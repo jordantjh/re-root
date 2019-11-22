@@ -15,7 +15,7 @@ class SolutionTest(TestCase):
         with self.assertRaises(SystemExit):
             s.get_file_name()
         out, err = self.capfd.readouterr()
-        assert "Error: File name must be provided from the command line." in out 
+        assert "Error: File name must be provided from the command line." in out
 
         # File name is provided: ensure no error message printed
         sys.argv = ['solution.py', 'inputs/input1.txt']

@@ -61,6 +61,18 @@ class FileHandlerTest(TestCase):
         out, err = self.capfd.readouterr()
         assert "Error: Unknown input line format found." in out
 
+    def test_division_by_zero(self):
+        """ Tests whether providing a traveled hours of 0 would break and stop the program (division by zero) """
+        f_valid = FileHandler('inputs/input1.txt')
+        f_valid.process_command(['Driver', 'Chuck'])
+        try:
+            f_valid.process_command(
+                ['Trip', 'Chuck', '18:00', '18:00', '0.0']
+            )
+        except SystemExit:
+            pytest.fail(
+                "Traveled hours of 0 should not stop program from running.")
+
     def test_print(self):
         """ Test to ensure there is output from print function """
         f_valid = FileHandler('inputs/input1.txt')

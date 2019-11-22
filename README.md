@@ -12,9 +12,9 @@ install dependencies
 ```
 pip3 install -r requirements.txt
 ```
-then execute *generate_report.py* with the input file *input1.txt* which resides in the directory *inputs*
+then execute *solution.py* with the input file *input1.txt* from the directory *inputs*
 ```
-python3 generate_report.py inputs/input1.txt
+python3 solution.py inputs/input1.txt
 ```
 
 ## Assumptions
@@ -24,10 +24,7 @@ python3 generate_report.py inputs/input1.txt
 4. Assume "Driver" command for the same driver name will only appear once in a .txt file.
 
 ## How I tested the application
-Tried running the application with some edge cases including
-missing input file command-line argument, input file not found, division by zero when
-a trip has 0 travel time, empty input file, input file with blank lines in between commands, 
-unknown input line format, etc.
+Unit tested some edge cases including missing input file command-line argument, input file not found, division by zero when a trip has 0 travel time, empty input file, input file with blank lines in between commands, unknown input line format, etc.
 
 Written a unit test for Driver class (inside directory 'models') that tests whether
 the constructor sets an object's values correctly.
