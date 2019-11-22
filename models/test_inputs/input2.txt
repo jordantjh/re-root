@@ -1,0 +1,10 @@
+Driver Dan
+Driver Lauren
+Driver Kumi
+Trip Dan 07:15 07:45 17.3
+Trip Dan 06:12 06:32 21.8
+Trip Lauren 12:01 13:16 42.0
+Trip Kumi 0:00 23:00 100.0
+Trip Kumi 06:01 07:00 100.0
+Trip Dan 08:00 09:00 0
+Trip Kumi 00:00 00:00 0
