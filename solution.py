@@ -8,11 +8,7 @@ class Solution:
         """ Process file and output result. """
 
         # Get file name from command line
-        try:
-            file_name = sys.argv[1]
-        except IndexError as e:
-            print("Error: File name must be provided from the command line.\n")
-            sys.exit()
+        file_name = self.get_file_name()
 
         # Open file
         f = FileHandler(file_name)
@@ -22,6 +18,17 @@ class Solution:
 
         # Display result
         f.print()
+
+    def get_file_name(self):
+        """ Get file name from command line """
+
+        try:
+            file_name = sys.argv[1]
+        except IndexError as e:
+            print("Error: File name must be provided from the command line.\n")
+            sys.exit()
+
+        return file_name
 
 
 if __name__ == "__main__":
