@@ -6,7 +6,7 @@ You will need to have Python 3 already installed on your machine, then
 
 cd into the project folder
 ```
-cd root-challenge
+cd re-root
 ```
 install dependencies
 ```
@@ -24,7 +24,7 @@ python3 solution.py inputs/input1.txt
 4. Assume "Driver" command for the same driver name will only appear once in a .txt file.
 
 ## How I tested the application
-I fragmented the solution code into many individual classes and methods and unit tested most of them to ensure they run as expected. Some of the edge cases the tests cover include missing input file command-line argument, input file not found, division by zero when a trip has 0 travel time, empty input file, input file with blank lines in between commands, unknown input line format, etc.
+I fragmented the solution code into many individual classes and methods and unit-tested most of them to ensure they run as expected. Some of the edge cases the tests cover include missing input file command-line argument, input file not found, division by zero when a trip has 0 travel time, empty input file, input file with blank lines in between commands, unknown input line format, etc.
 
 ## Running the tests
 Go to the root of the project, then simply do
@@ -33,5 +33,5 @@ pytest
 ```
 
 ## (Optional) Design Choices
-1. I have refactored the report printing functionality into a standalone class 'Report' because this gives us a more granular control for testing and also make updating or extending the printing functionality easier in the future.
+1. I have refactored the report printing functionality into a standalone class 'Report' because this gives us a more granular control for testing and also makes updating or extending the printing functionality easier in the future.
 2. I like to put test files in the same directory as the file they test so that we can easily access the corresponding test files when we work on the code.
