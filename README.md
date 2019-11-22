@@ -24,32 +24,14 @@ python3 solution.py inputs/input1.txt
 4. Assume "Driver" command for the same driver name will only appear once in a .txt file.
 
 ## How I tested the application
-Unit tested some edge cases including missing input file command-line argument, input file not found, division by zero when a trip has 0 travel time, empty input file, input file with blank lines in between commands, unknown input line format, etc.
-
-Written a unit test for Driver class (inside directory 'models') that tests whether
-the constructor sets an object's values correctly.
-
-Written a unit test for the helper function 'find_time_delta' that tests whether
-the function returns the correct difference between a start time and an end time, in hour unit.
-
+I fragmented the solution code into many individual classes and methods and unit tested most of them to ensure they run as expected. Some of the edge cases the tests cover include missing input file command-line argument, input file not found, division by zero when a trip has 0 travel time, empty input file, input file with blank lines in between commands, unknown input line format, etc.
 
 ## Running the tests
-* To run the test for Driver class: 
-Go to the root of the project, then
+Go to the root of the project, then simply do
 ```
-cd models
-```
-```
-python3 -m unittest test_driver.py
-```
-
-* To run the test for helper function 'find_time_delta': 
-Go to the root of the project, then
-```
-python3 -m unittest test_generate_report.py
+pytest
 ```
 
 ## (Optional) Design Choices
-1. I have refactored Driver class into directory 'models' because the Driver model should be a 
-reusable component for other projects in the company.
-2. I like to put test files in the same directory as the file they test so that executing the corresponding test file in the command line becomes convenient. 
+1. I have refactored the report printing functionality into a standalone class 'Report' because this gives us a more granular control for testing and also make updating or extending the printing functionality easier in the future.
+2. I like to put test files in the same directory as the file they test so that we can easily access the corresponding test files when we work on the code.
