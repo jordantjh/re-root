@@ -30,48 +30,47 @@ class FileHandler:
     def process(self):
         """ Process file line by line. """
 
-        driver_to_idx = {}   # for O(1) access
-
         # read the input file line by line
         for line in self.file_handler.read().splitlines():
             if line == "":
                 continue   # skip to next line
 
-            parsed_line_list = line.split()
-
-            # "Driver" command
-            # process_driver_command(parsed_line_list)
-            if parsed_line_list[0] == 'Driver':
-                command, driver_name = tuple(parsed_line_list)
-
-                # record new driver
-                self.output.append(Driver(driver_name, 0.0, 0.000))
-                self.driver_to_idx[driver_name] = len(
-                    self.output) - 1   # record index
-
-            # "Trip" command
-            elif parsed_line_list[0] == 'Trip':
-                command, driver_name, start_time, \
-                    end_time, miles_driven = tuple(parsed_line_list)
-                hours_driven = self.find_time_delta(start_time, end_time)
-
-                # ignore trips with 0 travel time
-                if hours_driven > 0:
-                    cur_mph = float(miles_driven)/hours_driven
-                    # ignore trips that are < 5 mph or > 100 mph
-                    if 5 <= cur_mph <= 100:
-                        # update the driver's info
-                        cur_driver = self.output[self.driver_to_idx[driver_name]]
-                        cur_driver.add_miles(float(miles_driven))
-                        cur_driver.add_hours(hours_driven)
-
-            else:
-                print("Error: Unknown input line format found.\n")
-                sys.exit()
+            self.process_command(line.split())
 
         # sort output list by total miles
         self.output.sort(
             key=lambda driver: driver.get_miles(), reverse=True)
+
+    def process_command(self, parsed_line_list):
+        # "Driver" command
+        if parsed_line_list[0] == 'Driver':
+            command, driver_name = tuple(parsed_line_list)
+
+            # record new driver
+            self.output.append(Driver(driver_name, 0.0, 0.000))
+            self.driver_to_idx[driver_name] = len(
+                self.output) - 1   # record index
+
+        # "Trip" command
+        elif parsed_line_list[0] == 'Trip':
+            command, driver_name, start_time, \
+                end_time, miles_driven = tuple(parsed_line_list)
+            hours_driven = self.find_time_delta(start_time, end_time)
+
+            # ignore trips with 0 travel time
+            if hours_driven > 0:
+                cur_mph = float(miles_driven)/hours_driven
+                # ignore trips that are < 5 mph or > 100 mph
+                if 5 <= cur_mph <= 100:
+                    # update the driver's info
+                    cur_driver = self.output[self.driver_to_idx[driver_name]]
+                    cur_driver.add_miles(float(miles_driven))
+                    cur_driver.add_hours(hours_driven)
+
+        # unknown command
+        else:
+            print("Error: Unknown input line format found.\n")
+            sys.exit()
 
     def find_time_delta(self, start_time, end_time):
         """ A helper function to process() """
