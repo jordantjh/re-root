@@ -8,7 +8,7 @@ cd into the project folder
 ```
 cd re-root
 ```
-install dependencies
+install dependencies (mainly just PyTest)
 ```
 pip3 install -r requirements.txt
 ```
