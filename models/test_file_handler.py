@@ -9,18 +9,18 @@ class FileHandlerTest(TestCase):
         """ Test both cases when the target file can be opened and when the file couldn't be found """
 
         # valid file name
-        f_valid = FileHandler('test_inputs/input1.txt')
-        self.assertEqual(f_valid.file_name, 'test_inputs/input1.txt')
+        f_valid = FileHandler('inputs/input1.txt')
+        self.assertEqual(f_valid.file_name, 'inputs/input1.txt')
         self.assertListEqual(f_valid.output, [])
 
         # invalid file name
         with self.assertRaises((FileNotFoundError, SystemExit)):
-            f_invalid = FileHandler('test_inputs/nonexistent.txt')
+            f_invalid = FileHandler('inputs/nonexistent.txt')
 
     def test_process_command(self):
         """ Tests whether "Driver", "Trip", and unknown commands are processed correctly """
 
-        f_valid = FileHandler('test_inputs/input1.txt')
+        f_valid = FileHandler('inputs/input1.txt')
 
         # 'Driver' command
         old_output_len = len(f_valid.output)
@@ -63,7 +63,7 @@ class FileHandlerTest(TestCase):
 
     def test_print(self):
         """ Test to ensure there is output from print function """
-        f_valid = FileHandler('test_inputs/input1.txt')
+        f_valid = FileHandler('inputs/input1.txt')
         f_valid.print()
         out, err = self.capfd.readouterr()
         assert out != ""
@@ -75,7 +75,7 @@ class FileHandlerTest(TestCase):
     def test_find_time_delta(self):
         """ Tests whether find_time_delta() returns the correct time difference, in hour unit """
 
-        f_valid = FileHandler('test_inputs/input1.txt')
+        f_valid = FileHandler('inputs/input1.txt')
         res1 = f_valid.find_time_delta("00:01", "01:30")
         res2 = f_valid.find_time_delta("07:15", "13:00")
 
